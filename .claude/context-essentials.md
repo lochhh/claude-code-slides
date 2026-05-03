@@ -32,6 +32,6 @@ These rules override conversational momentum.
 
 ## Key Facts
 - Slide title: "Becoming a Pro with Claude Code Pro"
-- Audience: intermediate/advanced software engineers who hit the Claude Code raw prompting ceiling
+- Audience: intermediate/advanced software engineers who mostly develop in Python and hit the Claude Code raw prompting ceiling
 - 8 themes: CLAUDE.md Setup, Context Management, Hooks & Automation, MCP Servers, Parallel Dev (Subagents + Worktrees), Commands/Skills/Plan Mode, Prompting Strategies, Productivity/IDE/Cost
 - deliverables/prod/: GitHub Pages compatible, relative links, no build tools required
