@@ -1,3 +1,8 @@
+---
+description: Propagate README changes into workflow files and context-essentials
+allowed-tools: Read, Edit
+---
+
 Compare README.md against all workflow files in workflows/ (01_research.md, 02_analyse.md, 03_synthesise.md, 04_slides.md) and .claude/context-essentials.md.
 
 Steps:

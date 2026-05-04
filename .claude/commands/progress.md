@@ -1,3 +1,8 @@
+---
+description: Project status across all phases
+allowed-tools: Read, Glob
+---
+
 # /progress — Project status across all phases
 
 Report current pipeline state without running anything.
