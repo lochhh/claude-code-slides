@@ -23,7 +23,7 @@ Transform analytical output into polished, navigable, pedagogically structured d
    - `deliverables/prod/references.md` — all sources listed, linkable per theme
 3. **Spot-check primitives page** for:
    - All primitives covered in usage-level order — basic: CLAUDE.md, tool use, project structure, permissions & settings, context model; novice: context compaction, memory, slash commands & skills, plan mode; intermediate: agents, hooks, MCP servers; advanced: plugins, git worktrees
-   - Each primitive has: definition, purpose explanation, concrete example
+   - Each primitive has: definition, purpose explanation, concrete example (Python-specific where possible; otherwise general with Python adaptation note)
 4. **Spot-check each theme file** for:
    - Summary paragraph present
    - Tips numbered, ranked, rewritten for clarity/consistency
@@ -186,7 +186,7 @@ All files must follow consistent structure, tone, and style:
 
 ## Completion Criteria
 
-- [ ] `deliverables/prod/primitives.md` exists covering all 14 primitives in usage-level order (basic → advanced) — each with definition, purpose, and example
+- [ ] `deliverables/prod/primitives.md` exists covering all 14 primitives in usage-level order (basic → advanced) — each with definition, purpose, and example (Python-specific where possible; general otherwise)
 - [ ] `deliverables/prod/index.md` exists with learning path, usage levels, reading order, cross-theme insights, link to primitives page, and links to all theme files
 - [ ] One `.md` file per theme in `deliverables/prod/`
 - [ ] Each theme file has: summary paragraph, numbered ranked tips, ≥1 concrete example per tip, pitfalls/misconceptions, "when to use this", cross-links to related themes

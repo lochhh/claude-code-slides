@@ -14,7 +14,7 @@ Find 10+ high-quality sources on using Claude Code effectively for software engi
 
 ## Target Audience Context
 
-Engineers already using Claude Code for basic prompting who hit the ceiling: project grows past single conversation, agent forgets conventions, introduces wrong patterns, user spends more time correcting than building. Content should be intermediate-to-advanced, not beginner.
+Engineers already using Claude Code for basic prompting who hit the ceiling: project grows past single conversation, agent forgets conventions, introduces wrong patterns, user spends more time correcting than building. Primary language: Python. Content should be intermediate-to-advanced, not beginner.
 
 ## Topics to Research (12)
 
