@@ -2,7 +2,7 @@
 
 ## Objective
 
-Write a clean, structured master guide to `deliverables/prod/` — one index file and one file per theme. GitHub Pages ready (plain GFM, relative links, no build tools).
+Transform analytical output into polished, navigable, pedagogically structured documentation for software engineers mastering Claude Code. Output: one index file + one file per theme in `deliverables/prod/`. GitHub Pages ready (plain GFM, relative links, no build tools).
 
 ## Prerequisites
 
@@ -16,14 +16,19 @@ Write a clean, structured master guide to `deliverables/prod/` — one index fil
    uv run python tools/synthesise_guide.py
    ```
 2. **Review output files:**
-   - `deliverables/prod/index.md` — landing page with theme summaries and links
+   - `deliverables/prod/index.md` — landing page with learning path, usage levels, and theme overview
    - `deliverables/prod/<theme-slug>.md` per theme
+   - `deliverables/prod/glossary.md` — key terms
+   - `deliverables/prod/references.md` — all sources listed, linkable per theme
 3. **Spot-check each theme file** for:
    - Summary paragraph present
-   - Tips numbered and ranked
+   - Tips numbered, ranked, rewritten for clarity/consistency
    - At least one concrete example per tip (real command, prompt snippet, or CLAUDE.md excerpt)
+   - Pitfalls, misconceptions, and "when to use this" guidance
+   - Cross-links to related themes
    - Relative links working (no absolute paths to prod/)
-4. **Verify GitHub Pages compatibility:** relative links between files, no JS required, no build output
+4. **Verify index** includes: beginner → expert learning path, usage levels, recommended reading order, cross-theme insights
+5. **Verify GitHub Pages compatibility:** relative links between files, no JS required, no build output
 
 ## Output Format
 
@@ -34,13 +39,27 @@ Write a clean, structured master guide to `deliverables/prod/` — one index fil
 
 > A master guide for software engineers who've hit the ceiling with basic Claude Code usage.
 
+## Learning Path
+
+beginner → novice → intermediate → advanced → expert
+
+<Brief description of what changes at each level.>
+
+## Recommended Reading Order
+
+<Ordered list of themes with rationale.>
+
 ## Themes
 
-| # | Theme | Summary |
-|---|-------|---------|
-| 1 | [CLAUDE.md & Setup](claudemd-setup.md) | ... |
-| 2 | [Context Management](context-management.md) | ... |
+| # | Theme | Level | Summary |
+|---|-------|-------|---------|
+| 1 | [CLAUDE.md & Setup](claudemd-setup.md) | Basic | ... |
+| 2 | [Context Management](context-management.md) | Intermediate | ... |
 ...
+
+## Cross-Theme Insights
+
+<2-3 paragraphs on how themes interact and reinforce each other.>
 
 ---
 *Generated from N sources. See [analysis](../analysis.md) for source details.*
@@ -53,7 +72,9 @@ Write a clean, structured master guide to `deliverables/prod/` — one index fil
 
 [← Back to index](index.md)
 
-<One-paragraph summary — what this theme is, why it matters for engineers at the ceiling.>
+<One-paragraph conceptual summary — what this theme is, why it matters for engineers at the ceiling.>
+
+**Level:** <Basic / Novice / Intermediate / Advanced / Expert>
 
 ## Tips
 
@@ -66,17 +87,67 @@ Write a clean, structured master guide to `deliverables/prod/` — one index fil
 <real command, config snippet, or prompt>
 ```
 
+> **When to use:** <context/trigger>
+>
+> **Pitfalls:** <common mistake or misconception>
+
 ### 2. ...
 
----
-*Sources: [file1](../../raw/file1.md), [file2](../../raw/file2.md)*
+## Related Themes
+
+- [<Theme>](<slug>.md) — <one-line reason for cross-link>
+
+## Sources
+
+See [References](references.md#source-slug-1), [References](references.md#source-slug-2)
 ```
+
+### `deliverables/prod/references.md`
+
+```markdown
+# References
+
+[← Back to index](index.md)
+
+All sources used across the master guide.
+
+| # | Title | Type | URL | Themes |
+|---|-------|------|-----|--------|
+| 1 | <title> | Article / Video / Repo / Community | <url> | [CLAUDE.md & Setup](claudemd-setup.md), ... |
+...
+```
+
+### `deliverables/prod/glossary.md`
+
+```markdown
+# Glossary
+
+[← Back to index](index.md)
+
+| Term | Definition |
+|------|------------|
+| CLAUDE.md | ... |
+| MCP | ... |
+...
+```
+
+## Style Guide
+
+All files must follow consistent structure, tone, and style:
+- Tone: clear, direct, practical — written for engineers not beginners
+- Tips: active voice, imperative mood ("Use X to Y", not "You can use X")
+- Examples: real, runnable — no pseudocode placeholders
+- Headings: sentence case
+- Cross-links: always include a one-line rationale
 
 ## Completion Criteria
 
-- [ ] `deliverables/prod/index.md` exists with links to all theme files
+- [ ] `deliverables/prod/index.md` exists with learning path, usage levels, reading order, cross-theme insights, and links to all theme files
 - [ ] One `.md` file per theme in `deliverables/prod/`
-- [ ] Each theme file has: summary paragraph, numbered ranked tips, ≥1 concrete example per tip
+- [ ] Each theme file has: summary paragraph, numbered ranked tips, ≥1 concrete example per tip, pitfalls/misconceptions, "when to use this", cross-links to related themes
+- [ ] `deliverables/prod/references.md` exists listing all sources with type, URL, and theme links
+- [ ] Each theme file links to relevant entries in `references.md` (not directly to raw files)
+- [ ] `deliverables/prod/glossary.md` exists with key terms
 - [ ] All links are relative and resolve correctly
 - [ ] No build tools or JS required to read the files
 

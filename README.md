@@ -8,7 +8,15 @@ Here's the workflow I want you to follow:
 
 2. ANALYSE: Read all collected files. Identify overlapping advice, deduplicate, and cluster into 6-8 major themes. Provide a summary table with all themes (linked to the corresponding subsections within the analysis), their ranks (by source frequency, also include the frequency), usage levels (e.g. basic, novice, intermediate, advanced, expert). In the main body, organise the themes by the 5 usage levels. Within each theme, rank tips by how often they appear across sources. Save the analysis to deliverables/analysis.md.
 
-3. SYNTHESISE: Write a clean, structured master guide to deliverables/prod/index.md as the index page. Each major theme should be its own markdown file in deliverables/prod. Every theme file must include: a one-paragraph summary, ranked tips with brief explanations, and at least one concrete example per tip (e.g. a real command, a prompt snippet, or a CLAUDE.md excerpt). All files should be plain GitHub-flavoured markdown with relative links between pages, no build tools required, so the deliverables/prod folder can be served via GitHub Pages as-is.
+3. SYNTHESISE: Transform the analytical output into a polished, navigable, pedagogically structured documentation set targeted at software engineers looking to master Claude Code. Create a master index page at deliverables/prod/index.md that introduces the beginner → expert learning path, usage levels, and theme overview. For each theme, create a dedicated markdown file in deliverables/prod/ that includes:
+
+- a one‑paragraph conceptual summary
+- ranked tips rewritten for clarity and consistency
+- at least one concrete example per tip (commands, prompt snippets, code, CLAUDE.md excerpts)
+- pitfalls, misconceptions, and "when to use this" guidance
+- cross‑links to related themes
+
+There must also be a page for References listing all sources, and individual theme pages should link to the relevant sources in the References. Ensure all files follow a consistent structure, tone, and style guide. Add a glossary, recommended reading order, and cross‑theme insights. All files should be plain GitHub-flavoured markdown with relative links between pages, no build tools required, so the deliverables/prod folder can be served via GitHub Pages as-is.
 
 4. PRESENT: Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Claude Code Pro" targeted at software engineers based on the master guide. Aim for ~20-30 slides covering all major themes, with speaker notes for a 1-hour session.
 
