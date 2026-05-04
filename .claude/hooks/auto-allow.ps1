@@ -24,7 +24,8 @@ if ($tool -eq 'Bash') {
         '^echo\b', '^pwd\b', '^which\b', '^file\b', '^stat\b',
         '^du\b', '^df\b', '^grep\b', '^rg\b', '^find\b',
         '^git (status|log|diff|show|branch|remote|describe)\b',
-        '^type\b'
+        '^type\b',
+        '^Remove-Item\s+\.claude\\hooks\\\.compact-flag\b'
     )
 
     $cmdTrimmed = $cmd.Trim()

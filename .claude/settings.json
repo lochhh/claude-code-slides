@@ -1,5 +1,16 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \".claude/hooks/post-compact-reinject.ps1\""
+          }
+        ]
+      }
+    ],
     "UserPromptSubmit": [
       {
         "hooks": [
@@ -37,6 +48,15 @@
           {
             "type": "command",
             "command": "powershell -ExecutionPolicy Bypass -File \".claude/hooks/block-bash-reads.ps1\""
+          }
+        ]
+      },
+      {
+        "matcher": "Read|Write|Edit|MultiEdit|Glob|Grep|WebFetch|WebSearch|Agent|TodoWrite",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -ExecutionPolicy Bypass -File \".claude/hooks/enforce-compact-recap.ps1\""
           }
         ]
       },
