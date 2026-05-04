@@ -1,5 +1,7 @@
 # Context Essentials (Re-injected After Compaction)
 
+> **Agent instruction:** On session start or post-compact, output a brief state recap (current phase, what's done, what's next) before answering the user's first message.
+
 ## Project Status
 - Phase 1 (research): DONE — 82 files in deliverables/raw/
 - Phase 2 (analyse): DONE — deliverables/analysis.md (8 themes, 74 tips)

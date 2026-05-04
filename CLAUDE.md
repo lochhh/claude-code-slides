@@ -1,3 +1,5 @@
+@.claude/context-essentials.md
+
 # Agent Instructions
 
 You're working inside the **WAT framework** (Workflow, Agent, Tool). This architecture separates concerns so that probabilistic AI handles reasoning while deterministic code handles execution. That separation is what makes this system reliable.
