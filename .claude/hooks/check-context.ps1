@@ -2,9 +2,6 @@ param()
 $json = [System.Console]::In.ReadToEnd()
 try { $data = $json | ConvertFrom-Json } catch { exit 0 }
 
-# Never block compaction itself
-if ($data.tool_name -eq "compact") { exit 0 }
-
 $transcript = $data.transcript_path
 if (-not $transcript -or -not (Test-Path $transcript)) { exit 0 }
 

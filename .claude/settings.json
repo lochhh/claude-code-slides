@@ -1,12 +1,11 @@
 {
   "hooks": {
-    "PostToolUse": [
+    "UserPromptSubmit": [
       {
-        "matcher": "compact",
         "hooks": [
           {
             "type": "command",
-            "command": "cat .claude/context-essentials.md"
+            "command": "powershell -ExecutionPolicy Bypass -File \".claude/hooks/check-context.ps1\""
           }
         ]
       }
@@ -18,15 +17,6 @@
           {
             "type": "command",
             "command": "powershell -ExecutionPolicy Bypass -File \".claude/hooks/auto-allow.ps1\""
-          }
-        ]
-      },
-      {
-        "matcher": ".*",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File \".claude/hooks/check-context.ps1\""
           }
         ]
       },
