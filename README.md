@@ -8,15 +8,14 @@ Here's the workflow I want you to follow:
 
 2. ANALYSE: Read all collected files. Identify overlapping advice, deduplicate, and cluster into 6-8 major themes. Provide a summary table with all themes (linked to the corresponding subsections within the analysis), their ranks (by source frequency, also include the frequency), usage levels (e.g. basic, novice, intermediate, advanced, expert). In the main body, organise the themes by the 5 usage levels. Within each theme, rank tips by how often they appear across sources. Save the analysis to deliverables/analysis.md.
 
-3. SYNTHESISE: Transform the analytical output into a polished, navigable, pedagogically structured documentation set targeted at software engineers looking to master Claude Code. Create a master index page at deliverables/prod/index.md that introduces the beginner → expert learning path, usage levels, and theme overview. For each theme, create a dedicated markdown file in deliverables/prod/ that includes:
+3. SYNTHESISE: Transform the analytical output into a polished, navigable, pedagogically structured documentation set targeted at software engineers looking to master Claude Code. Produce the following files in `deliverables/prod/`:
+   - `primitives.md` — teach the core Claude Code primitives in usage-level order (basic: CLAUDE.md, tool use, project structure, permissions & settings, context model; novice: context compaction, memory, slash commands & skills, plan mode; intermediate: agents, hooks, MCP servers; advanced: plugins, git worktrees), each with a clear definition, purpose explanation, concrete examples that many developers find useful/reusable (e.g. skills for code review, debugging, code simplifier;  useful/popular offical claude or third party plugins available from marketplaces).
+   - `index.md` — master index introducing the learning path (beginner → expert), usage levels, recommended reading order, theme overview table, cross-theme insights, and a link to `primitives.md`.
+   - One `<theme-slug>.md` per theme — one-paragraph conceptual summary, numbered tips ranked by frequency and rewritten for clarity and consistency, at least one concrete example per tip (commands, prompt snippets, code, CLAUDE.md excerpts), pitfalls, misconceptions, "when to use this" guidance, and cross-links to related themes. Each theme file links to relevant entries in `references.md` (not directly to raw source files).
+   - `references.md` — all sources listed with title, type, URL, and links to the themes that cite them.
+   - `glossary.md` — key terms and definitions.
 
-- a one‑paragraph conceptual summary
-- ranked tips rewritten for clarity and consistency
-- at least one concrete example per tip (commands, prompt snippets, code, CLAUDE.md excerpts)
-- pitfalls, misconceptions, and "when to use this" guidance
-- cross‑links to related themes
-
-There must also be a page for References listing all sources, and individual theme pages should link to the relevant sources in the References. Ensure all files follow a consistent structure, tone, and style guide. Add a glossary, recommended reading order, and cross‑theme insights. All files should be plain GitHub-flavoured markdown with relative links between pages, no build tools required, so the deliverables/prod folder can be served via GitHub Pages as-is.
+   All files must follow a consistent structure, tone, and style guide. Plain GitHub-flavoured markdown with relative links between pages, no build tools or JS required, so `deliverables/prod/` can be served via GitHub Pages as-is.
 
 4. PRESENT: Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Claude Code Pro" targeted at software engineers based on the master guide. Aim for ~20-30 slides covering all major themes, with speaker notes for a 1-hour session.
 

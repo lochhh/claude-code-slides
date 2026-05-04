@@ -2,7 +2,7 @@
 
 ## Objective
 
-Transform analytical output into polished, navigable, pedagogically structured documentation for software engineers mastering Claude Code. Output: one index file + one file per theme in `deliverables/prod/`. GitHub Pages ready (plain GFM, relative links, no build tools).
+Transform analytical output into polished, navigable, pedagogically structured documentation for software engineers mastering Claude Code. Output: primitives reference + index + one file per theme in `deliverables/prod/`. GitHub Pages ready (plain GFM, relative links, no build tools).
 
 ## Prerequisites
 
@@ -16,21 +16,65 @@ Transform analytical output into polished, navigable, pedagogically structured d
    uv run python tools/synthesise_guide.py
    ```
 2. **Review output files:**
+   - `deliverables/prod/primitives.md` — core Claude Code primitives with definitions, purpose, examples
    - `deliverables/prod/index.md` — landing page with learning path, usage levels, and theme overview
    - `deliverables/prod/<theme-slug>.md` per theme
    - `deliverables/prod/glossary.md` — key terms
    - `deliverables/prod/references.md` — all sources listed, linkable per theme
-3. **Spot-check each theme file** for:
+3. **Spot-check primitives page** for:
+   - All primitives covered in usage-level order — basic: CLAUDE.md, tool use, project structure, permissions & settings, context model; novice: context compaction, memory, slash commands & skills, plan mode; intermediate: agents, hooks, MCP servers; advanced: plugins, git worktrees
+   - Each primitive has: definition, purpose explanation, concrete example
+4. **Spot-check each theme file** for:
    - Summary paragraph present
    - Tips numbered, ranked, rewritten for clarity/consistency
    - At least one concrete example per tip (real command, prompt snippet, or CLAUDE.md excerpt)
    - Pitfalls, misconceptions, and "when to use this" guidance
    - Cross-links to related themes
    - Relative links working (no absolute paths to prod/)
-4. **Verify index** includes: beginner → expert learning path, usage levels, recommended reading order, cross-theme insights
-5. **Verify GitHub Pages compatibility:** relative links between files, no JS required, no build output
+5. **Verify index** includes: beginner → expert learning path, usage levels, recommended reading order, cross-theme insights, link to primitives page
+6. **Verify GitHub Pages compatibility:** relative links between files, no JS required, no build output
 
 ## Output Format
+
+### `deliverables/prod/primitives.md`
+
+```markdown
+# Claude Code Primitives
+
+[← Back to index](index.md)
+
+> Start here. These are the building blocks everything else builds on.
+
+## <Primitive Name> (e.g. CLAUDE.md)
+
+**What it is:** <one-sentence definition>
+
+**Why it matters:** <one-sentence purpose>
+
+**Example:**
+```<language>
+<concrete example>
+```
+
+<!-- Basic -->
+## CLAUDE.md
+## Tool Use
+## Project Structure
+## Permissions & Settings
+## Context Model
+<!-- Novice -->
+## Context Compaction
+## Memory
+## Slash Commands & Skills
+## Plan Mode
+<!-- Intermediate -->
+## Agents
+## Hooks
+## MCP Servers
+<!-- Advanced -->
+## Plugins
+## Git Worktrees
+```
 
 ### `deliverables/prod/index.md`
 
@@ -142,7 +186,8 @@ All files must follow consistent structure, tone, and style:
 
 ## Completion Criteria
 
-- [ ] `deliverables/prod/index.md` exists with learning path, usage levels, reading order, cross-theme insights, and links to all theme files
+- [ ] `deliverables/prod/primitives.md` exists covering all 14 primitives in usage-level order (basic → advanced) — each with definition, purpose, and example
+- [ ] `deliverables/prod/index.md` exists with learning path, usage levels, reading order, cross-theme insights, link to primitives page, and links to all theme files
 - [ ] One `.md` file per theme in `deliverables/prod/`
 - [ ] Each theme file has: summary paragraph, numbered ranked tips, ≥1 concrete example per tip, pitfalls/misconceptions, "when to use this", cross-links to related themes
 - [ ] `deliverables/prod/references.md` exists listing all sources with type, URL, and theme links
