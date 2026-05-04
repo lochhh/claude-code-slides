@@ -153,9 +153,9 @@
 - **What:** Claude responds more reliably to "Never modify /src/auth/ without confirmation" than "Be careful with auth."
 - **Example:** `Never run destructive database migrations without showing the SQL first.\nNever commit .env files.\nNever use npm; always use pnpm.`
 
-#### 3. Keep CLAUDE.md to ~150–200 lines; put everything else in reference files
+#### 3. Keep CLAUDE.md well under 100 lines; put everything else in reference files
 - Seen in: [174731.md], [how_to_set_up_claude_md_file.md], [my_claude_code_setup.md]
-- **What:** Frontier LLMs reliably follow ~150–200 instructions. Larger files reduce instruction-following fidelity. Move detailed docs to `docs/architecture.md` etc. and reference them.
+- **What:** Compliance degrades before Anthropic's stated 200-line limit — empirically observed around 145 lines, where agents followed top rules and silently ignored the rest. Trimming to ~77 lines restored compliance immediately. Keep only the highest-signal rules; move detailed docs to `docs/architecture.md` etc. and reference them.
 - **Example:** `# CLAUDE.md\nSee docs/architecture.md for the full system design.\nSee docs/db-schema.md for the database schema.`
 
 #### 4. Update CLAUDE.md reactively — every time Claude repeats the same mistake
@@ -170,8 +170,8 @@
 
 #### 6. Add a `context-essentials.md` for post-compaction rule re-injection
 - Seen in: [claude_code_post_compaction_hooks_for_context_renewal_7b616d.md], [2026_02_28_claude_code_hooks_guide.md]
-- **What:** Compaction is lossy — conventions mentioned at session start get compressed. A separate 10–50 line file with critical rules, paired with a PostToolUse hook on `compact`, re-injects them automatically.
-- **Example (settings.json):** `{"hooks": {"PostToolUse": [{"matcher": "compact", "type": "prompt", "prompt": "Reminder: DB is PostgreSQL 16, JSON:API format required, never use var"}]}}`
+- **What:** Compaction is lossy — conventions mentioned at session start get compressed. A separate 10–50 line file with critical rules survives if re-injected automatically. Note: `/compact` is a slash command, not a tool — a `PostToolUse` matcher on `"compact"` will never fire. Instead, use a CLAUDE.md `@.claude/context-essentials.md` import (re-read every session) or a `Stop` hook to inject on every response.
+- **Example (CLAUDE.md):** `@.claude/context-essentials.md` — Claude loads this at session start and after compaction restores CLAUDE.md context.
 
 #### 7. Use Skill folder structures with progressive disclosure, not monolithic files
 - Seen in: [174731.md], [claude_code_skills_automate_workflows.md]
@@ -212,8 +212,8 @@
 
 #### 4. Use post-compaction hooks to re-inject critical rules automatically
 - Seen in: [claude_code_post_compaction_hooks_for_context_renewal_7b616d.md], [2026_02_28_claude_code_hooks_guide.md]
-- **What:** Configure a `PostToolUse` hook matching `compact` to automatically output context-essentials.md so critical rules re-enter context without manual intervention.
-- **Example (settings.json):** `{"hooks": {"PostToolUse": [{"matcher": "compact", "command": "cat .claude/context-essentials.md"}]}}`
+- **What:** `/compact` is a slash command, not a tool — `PostToolUse` with `"matcher": "compact"` will never fire. The reliable alternative: `@`-import `context-essentials.md` in CLAUDE.md (Claude re-reads it every session start and after compaction restores the file) or use a `Stop` hook to unconditionally re-inject on every response turn.
+- **Example (CLAUDE.md):** `@.claude/context-essentials.md` — single line that keeps critical rules in context without any hook wiring.
 
 #### 5. Use phase-based sessions — clear between major work phases
 - Seen in: [simondholmes_ive_been_figuring_out_how_to_manage_context_act.md], [174731.md], [claude_code_best_practices_12_patterns_agentic_engineers_use.md]
@@ -390,8 +390,8 @@
 
 #### 6. Use prompt-type hooks for context re-injection after compaction
 - Seen in: [2026_02_28_claude_code_hooks_guide.md], [claude_code_post_compaction_hooks_for_context_renewal_7b616d.md]
-- **What:** A `PostToolUse` hook with `"type": "prompt"` injects text into Claude's context — not just shell output. Use this to re-inject critical project rules after `/compact`.
-- **Example (settings.json):** `{"type": "prompt", "prompt": "Reminder: this project uses Result<T,E> — never throw, always return Result. DB is PostgreSQL 16."}`
+- **What:** A hook with `"type": "prompt"` injects text into Claude's context (not just shell stdout). However, `/compact` is a slash command — `PostToolUse` won't catch it. A `Stop` hook fires after every response and can re-inject rules unconditionally; or pair a `UserPromptSubmit` hook with a CLAUDE.md `@` import so rules land at session start and survive compaction.
+- **Example (settings.json):** `{"hooks": {"Stop": [{"type": "prompt", "prompt": "Reminder: this project uses Result<T,E> — never throw, always return Result. DB is PostgreSQL 16."}]}}`
 
 #### 7. Auto-allow read-only commands with permissionDecision structured output
 - Seen in: [2026_02_28_claude_code_hooks_guide.md], [hooks_guide.md]
