@@ -1,5 +1,31 @@
 # claude-code-slides
 
+Research automation pipeline that finds, analyses, and synthesises the best resources on using Claude Code as a software engineer. Produces a polished master guide and reveal.js slide deck.
+
+## Setup
+
+```bash
+# install uv (once, global)
+curl -LsSf https://astral.sh/uv/install.sh | sh   # Unix/macOS
+# or: winget install astral-sh.uv                  # Windows
+
+# set up project
+git clone <repo-url>
+cd claude-code-slides
+uv sync
+
+# configure API keys
+cp .env.example .env   # fill in TAVILY_API_KEY etc.
+```
+
+> **Claude Code hooks** in `.claude/settings.json` use `uv run python` — they work on any platform once `uv sync` is done.
+
+## Initial Prompt
+
+The following prompt was used to bootstrap this project with Claude Code:
+
+---
+
 I want to create a reusable research automation tool that searches the web for the most useful and practical resources on using Claude Code as a software engineer who mostly develops in Python. These information should then become the master guide for software engineers.
 
 Here's the workflow I want you to follow:
@@ -9,7 +35,7 @@ Here's the workflow I want you to follow:
 2. ANALYSE: Read all collected files. Identify overlapping advice, deduplicate, and cluster into 6-8 major themes. Provide a summary table with all themes (linked to the corresponding subsections within the analysis), their ranks (by source frequency, also include the frequency), usage levels (e.g. basic, novice, intermediate, advanced, expert). In the main body, organise the themes by the 5 usage levels. Within each theme, rank tips by how often they appear across sources. Save the analysis to deliverables/analysis.md.
 
 3. SYNTHESISE: Transform the analytical output into a polished, navigable, pedagogically structured documentation set targeted at software engineers looking to master Claude Code. Produce the following files in `deliverables/prod/`:
-   - `primitives.md` — teach the core Claude Code primitives in usage-level order (basic: CLAUDE.md, tool use, project structure, permissions & settings, context model; novice: context compaction, memory, slash commands & skills, plan mode; intermediate: agents, hooks, MCP servers; advanced: plugins, git worktrees), each with a clear definition, purpose explanation, concrete examples that many developers find useful/reusable (e.g. skills for code review, debugging, code simplifier;  useful/popular offical claude or third party plugins available from marketplaces). Because the target audience develops mostly in Python, include Python-specific examples where possible, but also include general examples that can be adapted to any language.
+   - `primitives.md` — teach the core Claude Code primitives in usage-level order (basic: CLAUDE.md, tool use, project structure, permissions & settings, context model; novice: context compaction, memory, slash commands & skills, plan mode; intermediate: agents, hooks, MCP servers; advanced: plugins, git worktrees), each with a clear definition, purpose explanation, concrete examples that many developers find useful/reusable (e.g. skills for code review, debugging, code simplifier; useful/popular offical claude or third party plugins available from marketplaces). Because the target audience develops mostly in Python, include Python-specific examples where possible, but also include general examples that can be adapted to any language.
    - `index.md` — master index introducing the learning path (beginner → expert), usage levels, recommended reading order, theme overview table, cross-theme insights, and a link to `primitives.md`.
    - One `<theme-slug>.md` per theme — one-paragraph conceptual summary, numbered tips ranked by frequency and rewritten for clarity and consistency, at least one concrete example per tip (commands, prompt snippets, code, CLAUDE.md excerpts), pitfalls, misconceptions, "when to use this" guidance, and cross-links to related themes. Each theme file links to relevant entries in `references.md` (not directly to raw source files).
    - `references.md` — all sources listed with title, type, URL, and links to the themes that cite them.
@@ -19,7 +45,7 @@ Here's the workflow I want you to follow:
 
 4. PRESENT: Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Claude Code Pro" targeted at software engineers based on the master guide. Aim for ~20-30 slides covering all major themes, with speaker notes for a 1-hour session.
 
-Start with Phase 1 — research automation. Aim for at least 10 distinct sources. 
+Start with Phase 1 — research automation. Aim for at least 10 distinct sources.
 Let me know:
 - if there are any skills you think will be helpful,
 - if you have any questions, or
