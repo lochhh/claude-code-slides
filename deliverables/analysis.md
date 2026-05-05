@@ -168,10 +168,10 @@
 - **What:** Root CLAUDE.md for shared context; each sub-package has its own. Claude loads the most local file. Prevents polluting shared context with service-specific rules.
 - **Example:** `/CLAUDE.md` (shared: conventions, tools)\n`/packages/auth/CLAUDE.md` (auth-specific: JWT patterns, security rules)
 
-#### 6. Add a `context-essentials.md` for post-compaction rule re-injection
+#### 6. Re-inject critical rules after compaction with a `SessionStart` hook
 - Seen in: [claude_code_post_compaction_hooks_for_context_renewal_7b616d.md], [2026_02_28_claude_code_hooks_guide.md]
-- **What:** Compaction is lossy — conventions mentioned at session start get compressed. A separate 10–50 line file with critical rules survives if re-injected automatically. Note: `/compact` is a slash command, not a tool — a `PostToolUse` matcher on `"compact"` will never fire. Instead, use a CLAUDE.md `@.claude/context-essentials.md` import (re-read every session) or a `Stop` hook to inject on every response.
-- **Example (CLAUDE.md):** `@.claude/context-essentials.md` — Claude loads this at session start and after compaction restores CLAUDE.md context.
+- **What:** Two mechanisms, different purposes. `SessionStart` hook with `matcher: "compact"` fires only when a session resumes after compaction — use for dynamic reinject (project state, recent decisions). `@context-essentials.md` import in CLAUDE.md loads at every session start (compacted or not) — use for static rules always needed. `PostToolUse` with `"compact"` matcher never fires; `/compact` is a slash command, not a tool.
+- **Example (settings.json):** `{"hooks": {"SessionStart": [{"matcher": "compact", "hooks": [{"type": "command", "command": "cat .claude/context-essentials.md"}]}]}}`
 
 #### 7. Use Skill folder structures with progressive disclosure, not monolithic files
 - Seen in: [174731.md], [claude_code_skills_automate_workflows.md]
@@ -212,8 +212,8 @@
 
 #### 4. Use post-compaction hooks to re-inject critical rules automatically
 - Seen in: [claude_code_post_compaction_hooks_for_context_renewal_7b616d.md], [2026_02_28_claude_code_hooks_guide.md]
-- **What:** `/compact` is a slash command, not a tool — `PostToolUse` with `"matcher": "compact"` will never fire. The reliable alternative: `@`-import `context-essentials.md` in CLAUDE.md (Claude re-reads it every session start and after compaction restores the file) or use a `Stop` hook to unconditionally re-inject on every response turn.
-- **Example (CLAUDE.md):** `@.claude/context-essentials.md` — single line that keeps critical rules in context without any hook wiring.
+- **What:** `PostToolUse` with `"matcher": "compact"` will never fire — `/compact` is a slash command, not a tool. Correct approach: `SessionStart` hook with `matcher: "compact"` fires only when a session resumes after compaction (targeted). `@`-import `context-essentials.md` in CLAUDE.md loads at every session start regardless (always-on). Use both together: hook for dynamic reinject, `@` import for static rules.
+- **Example (settings.json):** `{"hooks": {"SessionStart": [{"matcher": "compact", "hooks": [{"type": "command", "command": "cat .claude/context-essentials.md"}]}]}}`
 
 #### 5. Use phase-based sessions — clear between major work phases
 - Seen in: [simondholmes_ive_been_figuring_out_how_to_manage_context_act.md], [174731.md], [claude_code_best_practices_12_patterns_agentic_engineers_use.md]

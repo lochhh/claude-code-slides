@@ -143,11 +143,28 @@ Root `/CLAUDE.md`:
 >
 > **Pitfalls:** Duplicating rules across the root and per-package files. Global rules live only at the root; move them there if you find yourself copying.
 
-### 6. Add a `context-essentials.md` for post-compaction rule re-injection
+### 6. Re-inject critical rules after compaction with a `SessionStart` hook
 
-[Context compaction](primitives.md#context-compaction) is lossy — conventions mentioned at session start get compressed alongside the full conversation history. A separate 10–50 line file containing your highest-priority rules survives compaction if re-injected automatically.[^8]
+Two mechanisms handle post-compaction context — they serve different purposes and are best used together.[^8][^9]
 
-Important caveat: `/compact` is a slash command, not a tool call, so a `PostToolUse` hook with a `"compact"` matcher will never fire — the compaction event is not exposed via `PostToolUse`. The reliable approach is to import [context-essentials.md](glossary.md#context-essentials) directly in CLAUDE.md using the `@` import syntax, which causes Claude to re-read it at session start.[^9]
+**`SessionStart` hook with `compact` matcher** fires only when a session resumes after compaction. Use it to run commands that rebuild dynamic context (project state, recent decisions, phase status):
+
+```json
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "compact",
+        "hooks": [{ "type": "command", "command": "cat .claude/context-essentials.md" }]
+      }
+    ]
+  }
+}
+```
+
+**`@` import in CLAUDE.md** loads the referenced file at every session start — compacted or not. Use for static rules that should always be present regardless of compaction state.
+
+Note: `PostToolUse` with a `"compact"` matcher will never fire — `/compact` is a slash command, not a tool call.
 
 **Example — `.claude/context-essentials.md`:**
 
@@ -173,9 +190,9 @@ Important caveat: `/compact` is a slash command, not a tool call, so a `PostTool
 @.claude/context-essentials.md
 ```
 
-> **When to use:** Any project where sessions routinely run long enough to trigger compaction, or where correctness rules are critical enough that drift is dangerous.
+> **When to use:** Use the `SessionStart` + `compact` hook for targeted post-compaction reinject of dynamic context. Use `@` import for static rules that must always be present. Both together for maximum coverage.
 >
-> **Pitfalls:** Making context-essentials.md a copy of CLAUDE.md. Keep it to 10–50 lines of the highest-signal rules only — every line costs tokens on every compaction.
+> **Pitfalls:** Relying only on `@` import — it works, but loads on every session and adds token cost each time. The `SessionStart` hook is more targeted. Also: don't make `context-essentials.md` a copy of CLAUDE.md — keep it to 10–50 lines of highest-signal rules only.
 
 ### 7. Structure skills as folders with progressive disclosure, not monolithic files
 
