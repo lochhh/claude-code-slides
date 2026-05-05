@@ -2,7 +2,7 @@
 
 ## Objective
 
-Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Claude Code Pro" targeting software engineers. ~20–30 slides, speaker notes for a 1-hour session.
+Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Claude Code Pro", based on the content from `docs/`. ~20–30 slides, speaker notes for a 1-hour session. In the last slide, link to the master guide on https://lochhh.github.io/claude-code-slides/.
 
 ## Prerequisites
 
@@ -40,7 +40,6 @@ Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Clau
 title: Becoming a Pro with Claude Code Pro
 tags: claude-code, engineering, productivity
 slideOptions:
-  theme: moon
   transition: slide
 ---
 ```
@@ -52,25 +51,22 @@ slideOptions:
 | 1 | Title: "Becoming a Pro with Claude Code Pro" + subtitle |
 | 2 | About this session (goals, audience) |
 | 3 | Agenda (theme list) |
-| 4–6 | Theme 1: CLAUDE.md & Setup |
-| 7–9 | Theme 2: Context Management |
-| 10–12 | Theme 3: MCP Servers |
-| 13–15 | Theme 4: Hooks & Automation |
-| 16–18 | Theme 5: Multi-Agent & Worktrees |
-| 19–21 | Theme 6: Prompting & Plan Mode |
-| 22–24 | Theme 7: Productivity & IDE |
-| 25–27 | Theme 8: Cost & Token Management |
+| 4–6 | Productivity & IDE |
+| 7–9 | CLAUDE.md & project memory |
+| 10–12 | Prompting Strategies |
+| 13–15 | Context Management |
+| 16–18 | Commands, skills & plan mode |
+| 19–21 | MCP Servers |
+| 22–24 | Hooks & Automation |
+| 25–27 | Parallel Development |
 | 28 | Summary: top 5 things to do tomorrow |
 | 29 | Resources & links |
-| 30 | Q&A |
 
 ## Speaker Notes Format
 
 Each slide's `Note:` block should include:
-- **Time guidance:** "~2 min" or "~3 min — pause for questions"
 - **Talking points:** 2–3 bullet sentences to expand on
 - **Demo cue** (if applicable): "DEMO: show CLAUDE.md in VS Code"
-- **Audience check:** questions to ask if energy drops
 
 ## Completion Criteria
 
@@ -84,3 +80,5 @@ Each slide's `Note:` block should include:
 ## Lessons Learned
 
 _Update this section as you encounter quirks during execution._
+
+- **Slide overflow**: Content overflows the viewport silently — no error, just hidden text. Slides with multiple code blocks or long tables are highest risk. Break into subslides or trim to bullet points. Rule of thumb: one code block + 3–5 bullet points max per slide. Test by pasting into HackMD and checking each slide visually.

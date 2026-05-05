@@ -2,7 +2,7 @@
 
 ## Project Context
 
-This project builds a research automation pipeline that finds, analyses, and synthesises the best resources on using Claude Code as a software engineer. The target audience is engineers who can prompt Claude Code to build things, but their project has grown past what fits in a single conversation: the agent forgets conventions, introduces unwanted patterns, and they spend more time correcting than building. The end goal is a polished master guide (`docs/`) and a reveal.js slide deck. Work proceeds in four sequential phases; do not skip or reorder them.
+This project builds a research automation pipeline that finds, analyses, and synthesises the best resources on using Claude Code as a software engineer. The target audience is engineers who can prompt Claude Code to build things, but their project has grown past what fits in a single conversation: the agent forgets conventions, introduces unwanted patterns, and they spend more time correcting than building. The end goal is a polished master guide (`docs/`) and a reveal.js slide deck (`deliverables/slides.md`). Work proceeds in four sequential phases; do not skip or reorder them.
 
 You're working inside the **WAT framework** (Workflow, Agent, Tool). This architecture separates concerns so that probabilistic AI handles reasoning while deterministic code handles execution. That separation is what makes this system reliable.
 
