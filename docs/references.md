@@ -66,3 +66,6 @@ All sources used across the master guide.
 | 58 | <a id="sub-agent-best-practices">[**Claude Code Sub-Agents: Parallel vs Sequential Patterns**](https://claudefa.st/blog/guide/agents/sub-agent-best-practices)</a> | Article | [Parallel Development](parallel-development.md) |
 | 59 | <a id="claude-code-agent-teams-parallel-agents">[**How Claude Code Parallel Agents Coordinate Through an Orchestrator**](https://www.mindstudio.ai/blog/claude-code-agent-teams-parallel-agents/)</a> | Article | [Parallel Development](parallel-development.md) |
 | 60 | <a id="what-is-claude-code-git-worktree-pattern-parallel-feature-br">[**The Claude Code Git Worktree Pattern: A Primer for Builders**](https://www.mindstudio.ai/blog/what-is-claude-code-git-worktree-pattern-parallel-feature-branches/)</a> | Article | [Parallel Development](parallel-development.md) |
+
+---
+*Part of the [Claude Code master guide](index.md)*
