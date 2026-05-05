@@ -2,7 +2,7 @@
 
 [← Back to index](index.md)
 
-[Slash commands](primitives.md#slash-commands-and-skills) and [skills](primitives.md#slash-commands-and-skills) are how you codify your workflow — turning ad-hoc prompts into repeatable, shareable, automatable operations. A command is a markdown file you invoke manually; a skill is the same mechanism with added features (subagent context, auto-invocation, supporting files) for recurring work. [Plan mode](primitives.md#plan-mode) closes the loop by giving you a review checkpoint before any changes land. Together these three primitives let you move from "type a prompt and hope" to "define once, invoke consistently."
+[Slash commands and skills](primitives.md#slash-commands-and-skills) are how you codify your workflow — turning ad-hoc prompts into repeatable, shareable, automatable operations. As of Claude Code 2.1.3, commands and skills run on the same underlying framework: a markdown file in `.claude/commands/` and a `SKILL.md` in `.claude/skills/<name>/` are interchangeable — both appear in the `/` menu and behave identically. The choice between them is structural: flat files for simple definitions, folders when you need supporting assets alongside the skill. [Plan mode](primitives.md#plan-mode) closes the loop by giving you a review checkpoint before any changes land. Together these primitives let you move from "type a prompt and hope" to "define once, invoke consistently."
 
 **Level:** Intermediate
 
@@ -96,41 +96,51 @@ The `allowed-tools: Read, Grep, Glob` line guarantees Claude cannot write or exe
 >
 > **Pitfalls:** Omitting `allowed-tools` on commands that should be read-only. Claude will default to its full tool set if the field is absent. Explicit is always safer.
 
-### 4. Understand the difference: commands are manual, skills add auto-invocation and structure
+### 4. Choose directory structure based on complexity, not capability
 
-A [skill](glossary.md#skill) is the recommended successor to a plain command file. Skills live in `.claude/skills/<name>/SKILL.md` (the legacy `.claude/commands/` path still works) and support features that flat command files do not: a folder structure for supporting files, frontmatter keys like `context: fork` and `user-invocable: false`, and auto-invocation when Claude detects a matching context.[^4][^5]
+As of Claude Code 2.1.3, commands and skills share the same framework. A file at `.claude/commands/deploy.md` and a file at `.claude/skills/deploy/SKILL.md` produce identical `/deploy` commands — same autocomplete, same frontmatter support (`context: fork`, `user-invocable`, `allowed-tools`), same behaviour. Existing files in either location continue to work without changes.[^4][^5]
 
-The decision rule is simple: if you invoke the same command more than three or four times a week in the same context, convert it to a skill with auto-detection. If the task requires human judgment to decide when it runs, keep it as a command.[^4]
+The only meaningful difference is structure: the folder form (`.claude/skills/<name>/`) lets you co-locate supporting assets (templates, reference files, sub-prompts) alongside the skill definition. Use the flat file form for anything self-contained; use the folder form when the command needs to reference local files.
 
-**Example:**
+**Example — identical commands, different layouts:**
 
 ```
-# .claude/skills/pr-review/SKILL.md
+# Flat form — simple, self-contained
+# .claude/commands/pr-review.md
 ---
 name: pr-review
 description: Review the current PR for bugs, style, and test coverage
-user-invocable: true
 allowed-tools: Read, Grep, Glob, Bash(gh pr diff *), Bash(gh pr view *)
 ---
 
 ## Current PR diff
 !`gh pr diff`
 
-## Changed files
-!`gh pr diff --name-only`
-
-Review the above changes for:
-1. Logic errors and edge cases
-2. Missing or inadequate test coverage
-3. Style inconsistencies with the existing codebase
-4. Security implications
-
+Review for logic errors, missing tests, style inconsistencies, and security implications.
 Provide actionable feedback ordered by priority.
 ```
 
-> **When to use:** Skills for recurring patterned work (every new API endpoint, every PR, every deploy). Commands for one-off situational actions (audit this specific module, fix this specific issue).
+```
+# Folder form — when supporting files are needed
+# .claude/skills/pr-review/SKILL.md
+---
+name: pr-review
+description: Review the current PR for bugs, style, and test coverage
+allowed-tools: Read, Grep, Glob, Bash(gh pr diff *), Bash(gh pr view *)
+---
+
+## Current PR diff
+!`gh pr diff`
+
+## Review checklist
+!`cat .claude/skills/pr-review/checklist.md`
+
+Review for logic errors, missing tests, style inconsistencies, and security implications.
+```
+
+> **When to use:** Start with the flat form in `.claude/commands/`. Migrate to the folder form only when you have real supporting files to co-locate — not speculatively.
 >
-> **Pitfalls:** Packing the skill file with background context (architecture notes, style guides, philosophy). Skill files should describe *what to do*, not *why everything works*. Bloated skill files degrade reliability over time.
+> **Pitfalls:** Packing skill files with background context (architecture notes, philosophy, style guides). Skill files should describe *what to do*, not *why everything works*. Bloated definitions degrade reliability over time.
 
 ### 5. Use plan mode before executing high-risk changes
 
