@@ -206,24 +206,29 @@ The `context: fork` frontmatter key runs the skill in a dedicated [subagent](pri
 ```
 # .claude/skills/security-audit/SKILL.md
 ---
-name: security-audit
-description: Deep security audit that runs in an isolated subagent
-context: fork
-allowed-tools: Read, Grep, Glob
-user-invocable: true
+description: "Conduct an autonomous security audit for secrets and vulnerabilities (runs in subagent)"
+subagent: true
+disable-model-invocation: false
 ---
 
-Conduct a thorough security audit of the codebase.
+# /security-audit
+Conduct a thorough security audit of the codebase in a subagent. 
 
-Scan for:
-1. Hardcoded credentials and API keys
-2. SQL injection vectors in raw query construction
-3. Missing authentication checks on routes
-4. Insecure deserialization patterns
-5. Exposed debug endpoints
+**Output Requirements:**
+- Provide ONLY the final structured report in the main session.
+- Do not stream intermediate file reads or tool outputs to the user.
+- Include file paths, line numbers, and risk levels (Low/Medium/High).
 
-Return a structured report with file paths and line numbers.
-The main session only needs the report — not the intermediate read operations.
+**Scan Focus:**
+1. Hardcoded credentials, API keys, and environment secrets.
+2. SQL injection vectors (e.g., raw query string concatenation).
+3. Missing authentication/authorization checks on routes.
+4. Insecure deserialization or dangerous `eval()` patterns.
+5. Exposed debug endpoints or verbose error handling.
+
+**Constraints:**
+- Use `grep`, `glob`, and `read` only.
+- Do NOT use `write` or `edit` tools.
 ```
 
 > **When to use:** Security audits, large-codebase searches, dependency vulnerability checks, any analysis that reads many files but only needs to return a compact result. Forked skills keep the main session's context clean.
