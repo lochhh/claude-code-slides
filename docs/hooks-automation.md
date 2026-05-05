@@ -243,9 +243,9 @@ Register for `Edit|Write` on `PreToolUse`:
 
 ---
 
-### 6. Re-inject critical context after [context compaction](primitives.md#context-compaction) using a PostCompact hook
+### 6. Re-inject critical context after [context compaction](primitives.md#context-compaction) using a SessionStart hook
 
-[Context compaction](glossary.md#context-compaction) is a lossy summarisation process. Project conventions — mentioned once at session start — are prime candidates for being compressed away. A `PostCompact` hook re-injects a short "before you ship" checklist every time compaction occurs.[^7]
+[Context compaction](glossary.md#context-compaction) is a lossy summarisation process. Project conventions — mentioned once at session start — are prime candidates for being compressed away. A `SessionStart` hook with `matcher: "compact"` re-injects a short "before you ship" checklist every time compaction occurs.[^7]
 
 Keep the injected content under 50 lines. Every line costs tokens and this fires on every single compaction.
 
@@ -254,8 +254,9 @@ Keep the injected content under 50 lines. Every line costs tokens and this fires
 ```json
 {
   "hooks": {
-    "PostCompact": [
+    "SessionStart": [
       {
+        "matcher": "compact",
         "hooks": [
           {
             "type": "command",
@@ -506,7 +507,7 @@ The `timeout` field (milliseconds) kills the hook process if it exceeds the limi
 ## Related themes
 
 - [CLAUDE.md & project memory](claudemd-setup.md) — hooks enforce CLAUDE.md rules at execution time, turning polite instructions into hard guarantees
-- [Context management](context-management.md) — PostCompact and Stop hooks are the most reliable mechanism for re-injecting critical rules after context compaction
+- [Context management](context-management.md) — SessionStart hooks with `matcher: "compact"` are the most reliable mechanism for re-injecting critical rules after context compaction
 - [Commands, skills & plan mode](commands-skills-plan-mode.md) — hooks can trigger automatically when skills expand into prompts via `UserPromptExpansion`, enabling skill-specific automation
 
 ---

@@ -95,15 +95,19 @@ The most reliable fix is a single `@`-import line in CLAUDE.md pointing to a tig
 
 Keep the essentials file under 50 lines. Every line costs tokens on every turn where it is active.
 
-Alternatively, use a `PostCompact` [hook](primitives.md#hooks) in `.claude/settings.json` to `cat` the file:[^5]
-
+Alternatively, use a `SessionStart` [hook](primitives.md#hooks) in `.claude/settings.json` with a `compact` matcher to re-inject critical context after every compaction.
 ```json
 {
   "hooks": {
-    "PostCompact": [
+    "SessionStart": [
       {
-        "type": "command",
-        "command": "cat \"${CLAUDE_PROJECT_DIR}/.claude/context-essentials.md\""
+        "matcher": "compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat \"${CLAUDE_PROJECT_DIR}/.claude/context-essentials.md\""
+          }
+        ]
       }
     ]
   }
@@ -112,7 +116,7 @@ Alternatively, use a `PostCompact` [hook](primitives.md#hooks) in `.claude/setti
 
 > **When to use:** Any project with enforced conventions (linting, auth patterns, banned imports). Set it up once per project, then stop thinking about it.
 >
-> **Pitfalls:** Attempting to use `PostToolUse` with `"matcher": "compact"` — `/compact` is a slash command, not a tool call, so `PostToolUse` never fires for it. Use `PostCompact` or the `@`-import approach instead.[^4]
+> **Pitfalls:** Attempting to use `PostToolUse` with `"matcher": "compact"` — `/compact` is a slash command, not a tool call, so `PostToolUse` never fires for it. Use `SessionStart` or the `@`-import approach instead.[^4]
 
 ---
 
@@ -236,7 +240,7 @@ Mental model for choosing:
 ## Related themes
 
 - [CLAUDE.md & project setup](claudemd-setup.md) — the `@`-import pattern for `context-essentials.md` is the lowest-friction solution to compaction data loss and lives entirely in your project setup
-- [Hooks & automation](hooks-automation.md) — `PostCompact` hooks re-inject critical rules after every compaction without any manual intervention; `Stop` hooks can also unconditionally re-inject rules every response turn
+- [Hooks & automation](hooks-automation.md) — `SessionStart` hooks with `matcher: "compact"` re-inject critical rules after every compaction without any manual intervention; `Stop` hooks can also unconditionally re-inject rules every response turn
 - [Parallel development](parallel-development.md) — git worktrees give each agent its own isolated context window, eliminating compaction pressure from the main session entirely
 
 ---
