@@ -18,40 +18,27 @@
 
 ---
 
-## Recommended reading order
+## How to use this guide
 
-Start here if you are working through the guide from scratch. Each theme builds on the concepts introduced before it.
+**1. Start with the Primitives**
 
-1. **[Productivity, IDE & cost](productivity-ide-cost.md)** — Set up your environment correctly before developing habits around the wrong defaults. Model routing, context compaction milestones, and IDE extensions all belong at session setup, not retrofit.
+Read **[Primitives](primitives.md)** first. The 14 foundational concepts — from CLAUDE.md and hooks to MCP servers, git worktrees, and subagents — underpin every theme in this guide. Understanding them upfront means the themes feel immediately coherent instead of forcing you to piece together unfamiliar concepts as you go.
 
-2. **[CLAUDE.md & project memory](claudemd-setup.md)** — CLAUDE.md is the highest-leverage file in any project. Get this right before every other habit. Novice-level but foundational: every downstream theme depends on a well-structured CLAUDE.md.
+**2. Progress through the themes in order**
 
-3. **[Prompting strategies](prompting-strategies.md)** — Good CLAUDE.md rules compound with good prompts. Learn the difference between vague and precise, when to let Claude reason freely and when to constrain it hard.
-
-4. **[Context management](context-management.md)** — Once you have CLAUDE.md and prompting discipline, the next ceiling is the context window. Understand how compaction works, when to compact vs. clear, and how to preserve decisions across session boundaries.
-
-5. **[Commands, skills & plan mode](commands-skills-plan-mode.md)** — Convert your most effective prompts into reusable commands and skills. Plan mode gives you a review checkpoint before files change. These three primitives raise the floor on every session.
-
-6. **[MCP servers](mcp-servers.md)** — Eliminate context switches to GitHub, databases, and live documentation. The right 2–3 MCP servers turn Claude Code into a single interface for your entire stack.
-
-7. **[Hooks & automation](hooks-automation.md)** — Make guarantees the model cannot break. Hooks are the most underused power feature in Claude Code. Use them to enforce what CLAUDE.md can only request.
-
-8. **[Parallel development](parallel-development.md)** — Run multiple independent workstreams simultaneously using git worktrees and subagents. Read this only after you are comfortable with context management and hooks — the failure modes at this level are expensive if you are not prepared.
-
----
-
-## Themes
+Once the primitives make sense, move through the themes in order.
+Each theme groups best practices and patterns that build on the previous ones, gradually moving you from "Claude is helpful" to "Claude is a force multiplier."
 
 | # | Theme | Level | Summary |
 |---|-------|-------|---------|
 | 1 | [Productivity, IDE & cost](productivity-ide-cost.md) | Basic | Small, repeatable habits — model routing, compaction milestones, IDE extensions, keybindings, and token spend monitoring — that compound into days of saved time across hundreds of sessions. |
-| 2 | [CLAUDE.md & project memory](claudemd-setup.md) | Novice | CLAUDE.md is Claude's standing orders for every session; structured correctly with explicit prohibitions, layered imports, and a gotchas section, it eliminates the correction loops that define the basic-usage ceiling. |
+| 2 | [CLAUDE.md & project memory](claudemd-setup.md) | Novice | CLAUDE.md is Claude's standing orders for every session; structured correctly with explicit prohibitions, layered imports, and a gotchas section, it eliminates the correction loops that define the basic-usage ceiling. Every downstream theme depends on a well-structured CLAUDE.md. |
 | 3 | [Prompting strategies](prompting-strategies.md) | Novice | Specificity, explore-before-code discipline, targeted file references, and constraint-based scoping are the habits that separate engineers who direct Claude from those who correct it. |
 | 4 | [Context management](context-management.md) | Intermediate | Treating compaction, clearing, and phase boundaries as first-class workflow tools — not reactive fixes — is what keeps Claude's quality consistent across sessions that span hours or days. |
 | 5 | [Commands, skills & plan mode](commands-skills-plan-mode.md) | Intermediate | Custom slash commands and skills codify your best prompts into repeatable, team-shareable operations; plan mode adds a read-only review gate before any changes land. |
 | 6 | [MCP servers](mcp-servers.md) | Intermediate | MCP servers expose GitHub, databases, live docs, and Playwright as tools Claude calls natively — eliminating the most common context switches and making Claude Code a single interface for your stack. |
 | 7 | [Hooks & automation](hooks-automation.md) | Advanced | Hooks execute deterministic shell commands and Python scripts at 25+ lifecycle points outside the LLM, turning CLAUDE.md's polite instructions into hard, unconditional guarantees. |
-| 8 | [Parallel development](parallel-development.md) | Expert | Git worktrees with filesystem isolation plus explicitly scoped subagents let one engineer run three to five independent workstreams simultaneously, merging back through standard PR discipline. |
+| 8 | [Parallel development](parallel-development.md) | Expert | Git worktrees with filesystem isolation plus explicitly scoped subagents let one engineer run three to five independent workstreams simultaneously. Read only after context management and hooks are solid — failure modes at this level are expensive. |
 
 ---
 
@@ -65,12 +52,4 @@ Automation unlocks the productivity ceiling that prompting alone cannot reach. H
 
 ---
 
-## Reference
-
-- [Primitives](primitives.md) — the 14 building blocks all eight themes build on, from CLAUDE.md to git worktrees
-- [Glossary](glossary.md) — definitions for every technical term used across the guide
-- [References](references.md) — all 82 sources cited inline across the eight theme files
-
----
-
-*Generated from 82 sources. See [analysis](../analysis.md) for source details.*
+*Generated from 82 sources. See [Glossary](glossary.md) for term definitions and [References](references.md) for the full source list.*
