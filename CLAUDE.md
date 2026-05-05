@@ -1,5 +1,3 @@
-@.claude/context-essentials.md
-
 # Agent Instructions
 
 ## Project Context
