@@ -52,4 +52,11 @@ Automation unlocks the productivity ceiling that prompting alone cannot reach. H
 
 ---
 
+## Additional resources
+
+- [Ready-to-use configurations for Claude Code](https://www.aitmpl.com/)
+- [Collection of Claude Code best practices](https://github.com/shanraisshan/claude-code-best-practice)
+
+---
+
 *Generated from 82 sources. See [Glossary](glossary.md) for term definitions and [References](references.md) for the full source list.*
