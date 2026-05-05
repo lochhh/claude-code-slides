@@ -2,7 +2,7 @@
 
 ## Objective
 
-Transform analytical output into polished, navigable, pedagogically structured documentation for software engineers mastering Claude Code. Output: primitives reference + index + one file per theme in `deliverables/prod/`. GitHub Pages ready (plain GFM, relative links, no build tools).
+Transform analytical output into polished, navigable, pedagogically structured documentation for software engineers mastering Claude Code. Output: primitives reference + index + one file per theme in `docs/`. GitHub Pages ready (plain GFM, relative links, no build tools).
 
 ## Prerequisites
 
@@ -14,37 +14,37 @@ Transform analytical output into polished, navigable, pedagogically structured d
 1. **Pre-flight:** Read `deliverables/analysis.md`. For each theme, extract the section verbatim and note the raw file paths cited per tip (source citations appear inline).
 
 2. **Batch 1 — support files (3 agents in parallel):** Spawn 3 `theme-writer` subagents simultaneously. These must complete before any theme file is written, since theme files cross-link to them.
-   - Agent 1 → `deliverables/prod/primitives.md`
-   - Agent 2 → `deliverables/prod/glossary.md`
-   - Agent 3 → `deliverables/prod/references.md`
+   - Agent 1 → `docs/primitives.md`
+   - Agent 2 → `docs/glossary.md`
+   - Agent 3 → `docs/references.md`
 
    Pass to each agent: `FILE_TYPE: support`, `FILE: <primitives|glossary|references>`, `ANALYSIS_MD_PATH`, `RAW_DIR`.
 
 3. **Batch 2 — themes 1–4 (4 agents in parallel):** Pass each agent their `ANALYSIS_SECTION` inline, `RAW_FILES` list, and `RELATED_THEMES`. Theme files must cross-link primitive names to `primitives.md`, technical terms to `glossary.md`, and cite sources as footnotes linking to `references.md`.
-   - Agent 1 → `deliverables/prod/claudemd-setup.md` (CLAUDE.md & Project Memory, Novice)
-   - Agent 2 → `deliverables/prod/context-management.md` (Context Management, Intermediate)
-   - Agent 3 → `deliverables/prod/hooks-automation.md` (Hooks & Automation, Advanced)
-   - Agent 4 → `deliverables/prod/mcp-servers.md` (MCP Servers, Intermediate)
+   - Agent 1 → `docs/claudemd-setup.md` (CLAUDE.md & Project Memory, Novice)
+   - Agent 2 → `docs/context-management.md` (Context Management, Intermediate)
+   - Agent 3 → `docs/hooks-automation.md` (Hooks & Automation, Advanced)
+   - Agent 4 → `docs/mcp-servers.md` (MCP Servers, Intermediate)
 
 4. **Batch 3 — themes 5–8 (4 agents in parallel):**
-   - Agent 1 → `deliverables/prod/prompting-strategies.md` (Prompting Strategies, Novice)
-   - Agent 2 → `deliverables/prod/productivity-ide-cost.md` (Productivity/IDE/Cost, Basic)
-   - Agent 3 → `deliverables/prod/parallel-development.md` (Parallel Development, Expert)
-   - Agent 4 → `deliverables/prod/commands-skills-plan-mode.md` (Commands/Skills/Plan Mode, Intermediate)
+   - Agent 1 → `docs/prompting-strategies.md` (Prompting Strategies, Novice)
+   - Agent 2 → `docs/productivity-ide-cost.md` (Productivity/IDE/Cost, Basic)
+   - Agent 3 → `docs/parallel-development.md` (Parallel Development, Expert)
+   - Agent 4 → `docs/commands-skills-plan-mode.md` (Commands/Skills/Plan Mode, Intermediate)
 
 5. **Final — index (1 agent):** Spawn 1 `theme-writer` subagent. Pass `FILE_TYPE: index` and all 11 completed file paths so the agent can read and extract summaries.
-   - Agent → `deliverables/prod/index.md`
+   - Agent → `docs/index.md`
 
 6. **Rate-limit fallback:** If any batch hits rate limits, split into [3]+[1] or [2]+[2] sub-batches.
 
    > **Model config:** Theme-writer subagents run on `claude-sonnet-4-6`. The orchestrating agent runs on Opus.
 
 7. **Review output files:**
-   - `deliverables/prod/primitives.md` — core Claude Code primitives with definitions, purpose, examples
-   - `deliverables/prod/index.md` — landing page with learning path, usage levels, and theme overview
-   - `deliverables/prod/<theme-slug>.md` per theme
-   - `deliverables/prod/glossary.md` — key terms
-   - `deliverables/prod/references.md` — all sources listed, linkable per theme
+   - `docs/primitives.md` — core Claude Code primitives with definitions, purpose, examples
+   - `docs/index.md` — landing page with learning path, usage levels, and theme overview
+   - `docs/<theme-slug>.md` per theme
+   - `docs/glossary.md` — key terms
+   - `docs/references.md` — all sources listed, linkable per theme
 
 9. **Spot-check primitives page** for:
    - All 14 primitives covered in usage-level order — basic: CLAUDE.md, tool use, project structure, permissions & settings, context model; novice: context compaction, memory, slash commands & skills, plan mode; intermediate: agents, hooks, MCP servers; advanced: plugins, git worktrees
@@ -73,7 +73,7 @@ Transform analytical output into polished, navigable, pedagogically structured d
 
 ## Output Format
 
-### `deliverables/prod/primitives.md`
+### `docs/primitives.md`
 
 ```markdown
 # Claude Code Primitives
@@ -113,7 +113,7 @@ Transform analytical output into polished, navigable, pedagogically structured d
 ## Git Worktrees
 ```
 
-### `deliverables/prod/index.md`
+### `docs/index.md`
 
 ```markdown
 # Becoming a Pro with Claude Code Pro
@@ -146,7 +146,7 @@ beginner → novice → intermediate → advanced → expert
 *Generated from N sources. See [analysis](../analysis.md) for source details.*
 ```
 
-### `deliverables/prod/<theme-slug>.md`
+### `docs/<theme-slug>.md`
 
 ```markdown
 # <Theme Name>
@@ -183,7 +183,7 @@ beginner → novice → intermediate → advanced → expert
 See [References](references.md#source-slug-1), [References](references.md#source-slug-2)
 ```
 
-### `deliverables/prod/references.md`
+### `docs/references.md`
 
 ```markdown
 # References
@@ -198,7 +198,7 @@ All sources used across the master guide.
 ...
 ```
 
-### `deliverables/prod/glossary.md`
+### `docs/glossary.md`
 
 ```markdown
 # Glossary
@@ -223,14 +223,14 @@ All files must follow consistent structure, tone, and style:
 
 ## Completion Criteria
 
-- [ ] `deliverables/prod/primitives.md` exists covering all 14 primitives in usage-level order (basic → advanced) — each with definition, purpose, and example (Python-specific where possible; general otherwise)
-- [ ] `deliverables/prod/index.md` exists with learning path, usage levels, reading order, cross-theme insights, link to primitives page, and links to all theme files
-- [ ] One `.md` file per theme in `deliverables/prod/`
+- [ ] `docs/primitives.md` exists covering all 14 primitives in usage-level order (basic → advanced) — each with definition, purpose, and example (Python-specific where possible; general otherwise)
+- [ ] `docs/index.md` exists with learning path, usage levels, reading order, cross-theme insights, link to primitives page, and links to all theme files
+- [ ] One `.md` file per theme in `docs/`
 - [ ] Each theme file has: summary paragraph, numbered ranked tips, ≥1 concrete example per tip, pitfalls/misconceptions, "when to use this", cross-links to related themes with one-line rationale
 - [ ] Each theme file cross-links primitive names to `primitives.md` and technical terms to `glossary.md` on first use per tip
 - [ ] Each theme file cites sources as inline footnotes linking to `references.md#<anchor>`
-- [ ] `deliverables/prod/references.md` exists listing all sources with type, URL, and theme links — each row has an HTML anchor matching footnote slugs
-- [ ] `deliverables/prod/glossary.md` exists with key terms — each row has an HTML anchor matching cross-link slugs
+- [ ] `docs/references.md` exists listing all sources with type, URL, and theme links — each row has an HTML anchor matching footnote slugs
+- [ ] `docs/glossary.md` exists with key terms — each row has an HTML anchor matching cross-link slugs
 - [ ] All links are relative and resolve correctly
 - [ ] No build tools or JS required to read the files
 

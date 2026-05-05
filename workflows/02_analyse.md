@@ -43,9 +43,18 @@ The tool will determine themes from the content, but expect something like:
 ```markdown
 # Analysis: Claude Code Research
 
-## Themes
+## Theme Summary
 
-### 1. <Theme Name>
+| # | Theme | Frequency | Usage Level | Section |
+|---|-------|-----------|-------------|---------|
+| 1 | <Theme Name> | N sources | Basic / Novice / Intermediate / Advanced / Expert | [→](#theme-slug) |
+| 2 | ... | ... | ... | [→](#theme-slug-2) |
+
+---
+
+## Basic
+
+### <a id="theme-slug"></a>1. <Theme Name>
 
 **Summary:** One-sentence description.
 
@@ -56,13 +65,34 @@ The tool will determine themes from the content, but expect something like:
 2. ...
 
 ---
-### 2. ...
+
+## Novice
+
+### <a id="theme-slug-2"></a>2. <Theme Name>
+
+...
+
+---
+
+## Intermediate
+
+...
+
+## Advanced
+
+...
+
+## Expert
+
+...
 ```
 
 ## Completion Criteria
 
 - [ ] `deliverables/analysis.md` exists
-- [ ] 6–8 themes with clear boundaries
+- [ ] Summary table at top: all themes with source frequency count, usage level, and link to subsection
+- [ ] Main body organised by the 5 usage levels (Basic, Novice, Intermediate, Advanced, Expert)
+- [ ] 6–8 themes with clear boundaries, each assigned a usage level
 - [ ] Each theme has 3+ tips, ranked by source frequency
 - [ ] At least one concrete example per tip
 - [ ] Source attribution present

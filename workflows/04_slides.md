@@ -6,7 +6,7 @@ Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Clau
 
 ## Prerequisites
 
-- Phase 3 complete: all files in `deliverables/prod/` reviewed and approved
+- Phase 3 complete: all files in `docs/` reviewed and approved
 - `uv sync` already run
 
 ## Steps

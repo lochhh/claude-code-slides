@@ -20,7 +20,7 @@ Report current pipeline state without running anything.
    - Report: DONE / MISSING
 
 3. **Phase 3 — Synthesise**
-   - Check `deliverables/prod/` exists
+   - Check `docs/` exists
    - Check for: `index.md`, `primitives.md`, `references.md`, `glossary.md`
    - Check for one file per theme (8 expected slugs: `claudemd-setup.md`, `context-management.md`, `hooks-automation.md`, `mcp-servers.md`, `parallel-dev.md`, `commands-skills-plan-mode.md`, `prompting-strategies.md`, `productivity-ide-cost.md`)
    - Report: DONE / IN PROGRESS (N/12 files) / MISSING
@@ -37,7 +37,7 @@ Report current pipeline state without running anything.
 
 Phase 1 · Research    ✅ DONE      82 files · all 12 topics covered
 Phase 2 · Analyse     ✅ DONE      8 themes · 74 tips
-Phase 3 · Synthesise  🔄 PENDING   0/12 files in deliverables/prod/
+Phase 3 · Synthesise  🔄 PENDING   0/12 files in docs/
 Phase 4 · Slides      🔄 PENDING   deliverables/slides.md missing
 
 Current phase: 3 — Synthesise

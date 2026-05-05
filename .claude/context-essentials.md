@@ -3,7 +3,7 @@
 ## Project Status
 - Phase 1 (research): DONE — 82 files in deliverables/raw/
 - Phase 2 (analyse): DONE — deliverables/analysis.md (8 themes, 74 tips)
-- Phase 3 (synthesise): PENDING — write deliverables/prod/ (index.md + 8 theme files)
+- Phase 3 (synthesise): DONE — docs/ (12 files: primitives, glossary, references, index + 8 theme files)
 - Phase 4 (slides): PENDING — write deliverables/slides.md (HackMD reveal.js)
 
 ## Critical Rules
@@ -20,8 +20,8 @@
 - Re-searching topics already saved in deliverables/raw/
 
 ## Phase Contract
-Current phase: Phase 3 — Synthesise (write deliverables/prod/)
-Next phase: Phase 4 — Slides (write deliverables/slides.md)
+Current phase: Phase 4 — Slides (write deliverables/slides.md)
+Next phase: DONE (no further phases)
 
 Operating in a phase-based workflow. At a phase boundary, you MUST:
 1. Edit this file — advance "Current phase" to the next phase and update "Next phase" accordingly
@@ -34,4 +34,4 @@ These rules override conversational momentum.
 - Slide title: "Becoming a Pro with Claude Code Pro"
 - Audience: intermediate/advanced software engineers who mostly develop in Python and hit the Claude Code raw prompting ceiling
 - 8 themes: CLAUDE.md Setup, Context Management, Hooks & Automation, MCP Servers, Parallel Dev (Subagents + Worktrees), Commands/Skills/Plan Mode, Prompting Strategies, Productivity/IDE/Cost
-- deliverables/prod/: GitHub Pages compatible, relative links, no build tools required
+- docs/: GitHub Pages compatible, relative links, no build tools required

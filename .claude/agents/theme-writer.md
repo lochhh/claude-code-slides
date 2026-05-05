@@ -1,7 +1,7 @@
 ---
 name: theme-writer
 model: claude-sonnet-4-6
-description: Writes one deliverables/prod/ file for the Claude Code master guide. Handles three file types — support files (primitives, glossary, references), theme files, and the index. The orchestrator passes file type, all required content, and the output path. The agent reads raw source files, synthesises into polished GFM, and writes the output file.
+description: Writes one docs/ file for the Claude Code master guide. Handles three file types — support files (primitives, glossary, references), theme files, and the index. The orchestrator passes file type, all required content, and the output path. The agent reads raw source files, synthesises into polished GFM, and writes the output file.
 tools:
   - Read
   - Write
@@ -19,7 +19,7 @@ Read the inputs the orchestrator provides, synthesise content from the analysis 
 The orchestrator will provide:
 
 - `FILE_TYPE`: one of `support` | `theme` | `index`
-- `OUTPUT_PATH`: where to write (e.g. `deliverables/prod/hooks-automation.md`)
+- `OUTPUT_PATH`: where to write (e.g. `docs/hooks-automation.md`)
 - For `theme` files: `THEME`, `SLUG`, `LEVEL`, `ANALYSIS_SECTION` (pasted inline), `RAW_FILES` (list of paths to read), `RELATED_THEMES` (list of slug + one-line rationale)
 - For `support` files: `FILE` (primitives | glossary | references), `ANALYSIS_MD_PATH`, `RAW_DIR` (path to raw files directory)
 - For `index` files: `ALL_THEME_PATHS` (list of all 11 completed file paths)
@@ -30,7 +30,7 @@ The orchestrator will provide:
 - Tips: active voice, imperative mood ("Use X to Y", not "You can use X to Y")
 - Examples: real and runnable — no pseudocode, no placeholder values
 - Headings: sentence case
-- Links: relative only — never absolute paths, never `deliverables/prod/` prefix
+- Links: relative only — never absolute paths, never `docs/` prefix
 - Cross-links to related themes: include a one-line rationale after each link
 - Cross-links to glossary: link technical terms on **first use** in each tip to their glossary entry (e.g. `[context window](glossary.md#context-window)`)
 - Cross-links to primitives: link Claude Code primitive names on **first use** in each tip to their primitives entry (e.g. `[CLAUDE.md](primitives.md#claudemd)`, `[hooks](primitives.md#hooks)`)
