@@ -2,7 +2,7 @@
 
 [← Back to index](index.md)
 
-[Hooks](primitives.md#hooks) transform Claude Code from a probabilistic assistant into an enforceable, repeatable workflow. They execute deterministic shell commands — or Python scripts — at 25+ lifecycle points outside the LLM, which means they run every time, regardless of prompt phrasing or model mood. If you have ever written "always run black after editing Python files" in a [CLAUDE.md](primitives.md#claudemd) and watched Claude skip it anyway, hooks are the fix: they are the most underused power feature in Claude Code, and the one with the highest ceiling for intermediate-to-advanced engineers.
+[Hooks](primitives.md#hooks) transform Claude Code from a probabilistic assistant into an enforceable, repeatable workflow. They execute deterministic shell commands — or Python scripts — at 25+ [lifecycle points](https://code.claude.com/docs/en/hooks#hook-lifecycle) outside the LLM, which means they run every time, regardless of prompt phrasing or model mood. If you have ever written "always run black after editing Python files" in a [CLAUDE.md](primitives.md#claudemd) and watched Claude skip it anyway, hooks are the fix: they are the most underused power feature in Claude Code, and the one with the highest ceiling for intermediate-to-advanced engineers.
 
 **Level:** Advanced
 

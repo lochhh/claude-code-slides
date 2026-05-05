@@ -37,7 +37,7 @@ Each theme groups best practices and patterns that build on the previous ones, g
 | 4 | [Context management](context-management.md) | Intermediate | Treating compaction, clearing, and phase boundaries as first-class workflow tools — not reactive fixes — is what keeps Claude's quality consistent across sessions that span hours or days. |
 | 5 | [Commands, skills & plan mode](commands-skills-plan-mode.md) | Intermediate | Custom slash commands and skills codify your best prompts into repeatable, team-shareable operations; plan mode adds a read-only review gate before any changes land. |
 | 6 | [MCP servers](mcp-servers.md) | Intermediate | MCP servers expose GitHub, databases, live docs, and Playwright as tools Claude calls natively — eliminating the most common context switches and making Claude Code a single interface for your stack. |
-| 7 | [Hooks & automation](hooks-automation.md) | Advanced | Hooks execute deterministic shell commands and Python scripts at 25+ lifecycle points outside the LLM, turning CLAUDE.md's polite instructions into hard, unconditional guarantees. |
+| 7 | [Hooks & automation](hooks-automation.md) | Advanced | Hooks execute deterministic shell commands and Python scripts at 25+ [lifecycle points](https://code.claude.com/docs/en/hooks#hook-lifecycle) outside the LLM, turning CLAUDE.md's polite instructions into hard, unconditional guarantees. |
 | 8 | [Parallel development](parallel-development.md) | Expert | Git worktrees with filesystem isolation plus explicitly scoped subagents let one engineer run three to five independent workstreams simultaneously. Read only after context management and hooks are solid — failure modes at this level are expensive. |
 
 ---
