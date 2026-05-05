@@ -1,5 +1,5 @@
 ---
-description: Project status across all phases
+description: Check project status across all phases
 allowed-tools: Read, Glob
 ---
 
