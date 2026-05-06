@@ -1,13 +1,15 @@
 ---
 title: Go Pro with Claude Code
-tags: claude-code, engineering, productivity
 slideOptions:
+  theme: black
   transition: slide
 ---
 
-## Becoming a Pro with Claude Code
+## Go Pro with Claude Code
 
-**From "Claude is helpful" → "Claude is a force multiplier"**
+NIU Team Meeting 06.05.2026
+
+Chang Huan Lo
 
 Note:
 - Talking points: This session is for engineers who already use Claude Code daily but keep running into the same walls — Claude forgets context, introduces unwanted patterns, and you spend more time correcting than building. We'll cover 8 themes that compound, from basic habits to expert-level parallel workstreams.
@@ -72,10 +74,10 @@ Note:
 - `MAX_THINKING_TOKENS=10000` — cap extended thinking costs
 - `Option+K` / `Alt+K` — insert `@filename#line-range` from selection
 - Default to Sonnet; Haiku for reviews; Opus sparingly
-- Model routing alone: 70% cost reduction on review/test tasks, zero quality loss
 
 Note:
 - DEMO: show `ccusage daily` live to illustrate what "per-day breakdown" looks like vs. `/cost`.
+- Model routing alone: 70% cost reduction on review/test tasks, zero quality loss
 
 ----
 
@@ -99,11 +101,10 @@ ccusage blocks --live   # Live 5-hour billing window
 export MAX_THINKING_TOKENS=10000
 ```
 
+Note:
 - `ccusage blocks --live` — catches expensive sessions in real time; add to shell profile
 - VS Code extension auto-shares current file, selection, Problems panel — no manual copy-pasting
 - Compact at session milestones, not reactively
-
-Note:
 
 ---
 
@@ -114,7 +115,7 @@ Note:
 - Eliminates correction loops
 - Scales with project complexity via layered files
 - Not a README — a briefing. Commands, prohibitions, gotchas Claude can't infer from code
-- ~77 lines sweet spot; compliance degrades past ~145 lines — use `@`-imports for the rest
+- ~80 lines sweet spot; compliance degrades past ~145 lines
 
 Note:
 - DEMO: open a real CLAUDE.md in VS Code and walk through the structure live.
@@ -415,6 +416,8 @@ open ports, or vulnerable dependencies. Do not make changes.
 - Best For: Enforcing style guides or complex, multi-step logic.
 - Efficiency: "Lazy-loads" only when needed to save tokens.
 
+----
+
 ## Unified Implementation
 
 - Flexibility: Modern Claude Code treats both **skills** and **commands** as part of a single extensibility layer.
@@ -510,17 +513,17 @@ Note:
 
 Hooks execute deterministic shell commands at **25+ lifecycle points** — outside the LLM, every time, regardless of prompt phrasing.
 
+- Written "always run black" in CLAUDE.md and Claude keeps skipping it? Hooks are the fix.
+- **Critical:** `exit 1` = warn only; `exit 2` = block — most teams get this wrong and never notice
+
+----
+
 | Hook | Trigger | Use case |
 |------|---------|---------|
 | `PreToolUse` | Before any tool call | Block dangerous ops, auto-allow reads |
 | `PostToolUse` | After any tool call | Run formatter, run tests |
 | `Stop` | Before Claude stops | Lint gate, quality check |
 | `SessionStart` | Session begins | Prime context from git history |
-
-----
-
-- Written "always run black" in CLAUDE.md and Claude keeps skipping it? Hooks are the fix.
-- **Critical:** `exit 1` = warn only; `exit 2` = block — most teams get this wrong and never notice
 
 Note:
 - DEMO: show a PostToolUse formatter hook firing live as Claude edits a Python file.
@@ -577,7 +580,7 @@ Note:
 - Hooks fire **outside** the LLM — no prompt phrasing bypasses them
 - Stop hooks need `stop_hook_active` guard to avoid infinite loops
 
----
+----
 
 ## Production Hook Stack
 
@@ -599,7 +602,7 @@ if os.path.isfile(test_file):
 Note:
 - DEMO: show a PostToolUse formatter hook firing live as Claude edits a Python file.
 
----
+----
 
 ## Hook Performance & Guards
 
@@ -638,9 +641,7 @@ claude -w feature/email-verification   # creates worktree + opens session
 Note:
 - Worktrees share history but have independent file trees and context windows
 
----
-
-## Task Decomposition First
+----
 
 | Task | Agent | Primary files | Never touches |
 |------|-------|--------------|--------------|
@@ -649,7 +650,9 @@ Note:
 | DB migrations | Agent 3 | `migrations/*` | `src/` |
 | Test coverage | Agent 4 | `tests/` | `src/` (read only) |
 
-Any file-level overlap = merge conflicts that cost more than sequential execution.
+Note:
+- File decomposition first
+- Any file-level overlap = merge conflicts that cost more than sequential execution.
 
 ----
 
@@ -659,7 +662,7 @@ Any file-level overlap = merge conflicts that cost more than sequential executio
 
 Note:
 
----
+----
 
 ## Subagents & Cost Control
 
