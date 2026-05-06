@@ -61,5 +61,10 @@
         ]
       }
     ]
+  },
+  "permissions": {
+    "allow": [
+      "Edit(/.claude/skills/sync-hackmd/**)"
+    ]
   }
 }
