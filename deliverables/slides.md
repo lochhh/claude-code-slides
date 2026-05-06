@@ -1,5 +1,5 @@
 ---
-title: Becoming a Pro with Claude Code Pro
+title: Go Pro with Claude Code
 tags: claude-code, engineering, productivity
 slideOptions:
   transition: slide

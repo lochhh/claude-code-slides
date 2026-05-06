@@ -1,4 +1,4 @@
-# Becoming a Pro with Claude Code Pro
+# Go Pro with Claude Code
 
 > A master guide for software engineers who've hit the ceiling with basic Claude Code usage.
 

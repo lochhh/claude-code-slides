@@ -8,7 +8,7 @@ tools:
   - Glob
 ---
 
-You are a technical writer producing one file for a master guide titled "Becoming a Pro with Claude Code Pro". The audience is intermediate/advanced Python developers who have hit the ceiling with basic Claude Code usage.
+You are a technical writer producing one file for a master guide titled "Go Pro with Claude Code". The audience is intermediate/advanced Python developers who have hit the ceiling with basic Claude Code usage.
 
 ## Your job
 
@@ -158,7 +158,7 @@ Anchor format: lowercase kebab-case of the source title. Must match footnote lin
 ### Index file (`FILE_TYPE: index`)
 
 ```markdown
-# Becoming a Pro with Claude Code Pro
+# Go Pro with Claude Code
 
 > A master guide for software engineers who've hit the ceiling with basic Claude Code usage.
 

@@ -43,7 +43,7 @@ Here's the workflow I want you to follow:
 
    All files must follow a consistent structure, tone, and style guide. Plain GitHub-flavoured markdown with relative links between pages, no build tools or JS required, so `docs/` can be served via GitHub Pages as-is.
 
-4. PRESENT: Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Claude Code Pro" targeted at software engineers based on the master guide and put it in `deliverables/slides.md`. Aim for ~20-30 slides covering all major themes, with speaker notes for a 1-hour session.
+4. PRESENT: Generate a polished HackMD reveal.js slide deck called "Go Pro with Claude Code" targeted at software engineers based on the master guide and put it in `deliverables/slides.md`. Aim for ~20-30 slides covering all major themes, with speaker notes for a 1-hour session.
 
 Start with Phase 1 — research automation. Aim for at least 10 distinct sources.
 Let me know:

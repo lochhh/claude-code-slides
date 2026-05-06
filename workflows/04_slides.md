@@ -2,7 +2,7 @@
 
 ## Objective
 
-Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Claude Code Pro", based on the content from `docs/`. ~20–30 slides, speaker notes for a 1-hour session. In the last slide, link to the master guide on https://lochhh.github.io/claude-code-slides/.
+Generate a polished HackMD reveal.js slide deck called "Go Pro with Claude Code", based on the content from `docs/`. ~20–30 slides, speaker notes for a 1-hour session. In the last slide, link to the master guide on https://lochhh.github.io/claude-code-slides/.
 
 ## Prerequisites
 
@@ -37,7 +37,7 @@ Generate a polished HackMD reveal.js slide deck called "Becoming a Pro with Clau
 **HackMD front matter:**
 ```yaml
 ---
-title: Becoming a Pro with Claude Code Pro
+title: Go Pro with Claude Code
 tags: claude-code, engineering, productivity
 slideOptions:
   transition: slide
@@ -48,7 +48,7 @@ slideOptions:
 
 | Slide # | Content |
 |---------|---------|
-| 1 | Title: "Becoming a Pro with Claude Code Pro" + subtitle |
+| 1 | Title: "Go Pro with Claude Code" + subtitle |
 | 2 | About this session (goals, audience) |
 | 3 | Agenda (theme list) |
 | 4–6 | Productivity & IDE |
