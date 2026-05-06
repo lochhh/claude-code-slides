@@ -52,15 +52,6 @@
         ]
       },
       {
-        "matcher": "Read|Write|Edit|MultiEdit|Glob|Grep|WebFetch|WebSearch|Agent|TodoWrite",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run python .claude/hooks/enforce-compact-recap.py"
-          }
-        ]
-      },
-      {
         "matcher": "Write|Edit|MultiEdit",
         "hooks": [
           {
