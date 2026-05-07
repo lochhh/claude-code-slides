@@ -59,4 +59,4 @@ Automation unlocks the productivity ceiling that prompting alone cannot reach. H
 
 ---
 
-*Generated from 82 sources. See [Glossary](glossary.md) for term definitions and [References](references.md) for the full source list.*
+*Generated from 82 sources. See [Glossary](glossary.md) for term definitions and [References](references.md) for the full source list. A slide-deck summary of this guide is available on [HackMD](https://hackmd.io/@lochhh/S1-LJ0vRZx#/)*
